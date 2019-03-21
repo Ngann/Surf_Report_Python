@@ -5,3 +5,6 @@ To simplify this assignment, we will be focusing on a single buoy off the coast 
 https://www.ndbc.noaa.gov/data/realtime2/46029.spec
 
 The description for what each column means can be found here: https://www.ndbc.noaa.gov/waveobs.shtml
+
+
+Click on NDBC.ipynb to see the data and caculation. To view the file and run the test, you will need Jupyter Notebooks.
