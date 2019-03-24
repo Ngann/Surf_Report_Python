@@ -8,5 +8,5 @@ This assignment is to make a simple Surf Report application by using the buoy da
 
 ## Setup/Installation Requirements
 
-* To view this project you should be able to click on NDBC.ipynb in the respositiory the data and caculations.
+* To view this project you should be able to click on NDBC.ipynb in the respository to see the data and caculations.
 * To view the file and run the test, you will need Jupyter Notebooks to open the file. 
