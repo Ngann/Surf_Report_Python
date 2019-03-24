@@ -1,8 +1,5 @@
 # Surf Report
-
-#### Simple Surf Report Application, 3.20.19
-
-#### By Ngan Nguyen
+#### Ngan Nguyen
 
 ## Description
 
