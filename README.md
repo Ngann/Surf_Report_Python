@@ -1,10 +1,15 @@
-#Simple Surf Report
+# Surf Report
+
+#### Simple Surf Report Application, 3.20.19
+
+#### By Ngan Nguyen
+
+## Description
 
 This assignment is to make a simple Surf Report application by using the buoy data provided by NOAA. The data feed is a simple tab delimited file that contains wind & swell data for the last 45 days. 
-To simplify this assignment, we will be focusing on a single buoy off the coast of Oregon. The data feed for this buoy can be found here:
-https://www.ndbc.noaa.gov/data/realtime2/46029.spec
-
-The description for what each column means can be found here: https://www.ndbc.noaa.gov/waveobs.shtml
 
 
-Click on NDBC.ipynb to see the data and caculation. To view the file and run the test, you will need Jupyter Notebooks.
+## Setup/Installation Requirements
+
+* To view this project you should be able to click on NDBC.ipynb in the respositiory the data and caculations.
+* To view the file and run the test, you will need Jupyter Notebooks to open the file. 
