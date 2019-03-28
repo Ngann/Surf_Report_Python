@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-
 <html>
-   <head>
-         <meta charset="UTF-8">
-         <link rel="stylesheet" href="/static/stylesheets/welcome-template.css">
-
-         <!-- The welcome struct (shown in the main.go code) is received within the HTML and we just need to use the . operator and retrieve the information we want -->
-         <title>Welcome {{.Name}}</title>
-   </head>
-   <body>
-      <div class="welcome center">Welcome {{.Name}}, it is {{.Time}}</div>
-   </body>
+    <head>
+    <title></title>
+    </head>
+    <body>
+        <form action="/login" method="post">
+            Username:<input type="text" name="username">
+            Password:<input type="password" name="password">
+            <input type="submit" value="Login">
+        </form>
+    </body>
 </html>
