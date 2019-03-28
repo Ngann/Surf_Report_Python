@@ -56,10 +56,23 @@ func surfDataRequest(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// log.Printf("Body: %s\n", body)
-	var surf = string(body)
-	var rows = strings.Split(surf, "\n")
+	surf := string(body)
+	// surfSpace := space.ReplaceAllString(surf, ",")
+	// rowsSpace := strings.Split(surfSpace, "\n")
+
+	rows := strings.Split(surf, "\n")
+	// fmt.Println(rowsSpace)
 	// var header = strings.Split(rows[0], " ")
+
 	var allSurfData []SurfData
+
+	// for i := 0; i < len(rows); i++ {
+	// 	space := regexp.MustCompile(`\s+`)
+	// 	removeSpace := space.ReplaceAllString(rows[i], " ")
+	// 	row := strings.Split(removeSpace[i])
+	// 	fmt.Println("column:", row[0])
+
+	// }
 
 	for i := 2; i < len(rows); i++ {
 		var row = strings.Split(rows[i], " ")
@@ -101,7 +114,7 @@ func surfDataRequest(w http.ResponseWriter, r *http.Request) {
 
 		allSurfData = append(allSurfData, surfData)
 	}
-	// log.Println(allSurfData)
+	log.Println(allSurfData)
 
 	js, err := json.Marshal(allSurfData)
 	if err != nil {

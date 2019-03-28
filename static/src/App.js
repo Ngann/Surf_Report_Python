@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 class App extends Component {
   constructor(props){
@@ -21,10 +22,39 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.state.surfData.map(function name(surfDataRow){
-          return (<p>year:{surfDataRow.Year}</p>)
-        })
-        }
+        <Table striped bordered hover size="sm" >
+            <thead >
+              <tr>
+                <th>Date</th>
+                <th>SwH</th>
+                <th>WVHT</th>
+                <th>SwP</th>
+                <th>WWH</th>
+                <th>WWP</th>
+                <th>SwD</th>
+                <th>WWP</th>
+              </tr>
+            </thead>
+          { this.state.surfData.map(function name(surfDataRow){
+              if ((surfDataRow.Year == 2019) & (surfDataRow.Month == 3) & (surfDataRow.Day == 28)) {
+                return (
+                  <tbody>
+                    <tr>
+                      <td>{surfDataRow.Year}-{surfDataRow.Month}-{surfDataRow.Day} </td>
+                      <td>{surfDataRow.SwH}</td>
+                      <td>{surfDataRow.WVHT}</td>
+                      <td>{surfDataRow.SwP}</td>
+                      <td>{surfDataRow.WWH}</td>
+                      <td>{surfDataRow.WWP}</td>
+                      <td>{surfDataRow.SwD}</td>
+                      <td>{surfDataRow.WWP}</td>
+                    </tr>
+                  </tbody>
+                )
+              }
+          })
+          }
+          </Table>
       </div>
     );
   }
