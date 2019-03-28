@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -28,6 +28,16 @@ type SurfData struct {
 }
 
 func main() {
+	http.HandleFunc("/", surfDataRequest)
+	http.ListenAndServe(":3000", nil)
+}
+
+func surfDataRequest(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3001")
+	if (*r).Method == "OPTIONS" {
+		return
+	}
 	var err error
 
 	// request http api
@@ -91,20 +101,13 @@ func main() {
 
 		allSurfData = append(allSurfData, surfData)
 	}
+	// log.Println(allSurfData)
 
-	fmt.Println(allSurfData)
+	js, err := json.Marshal(allSurfData)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-	// parse json
-	// type surfData struct {
-	// 	Year string `rows`
-	// }
-	// surf := jsonSurf{}
-
-	// err = json.Unmarshal(body, &surf)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	// fmt.Printf("Received user %s ", body)
-
+	w.Write(js)
 }
