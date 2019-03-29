@@ -13,14 +13,14 @@ function wwdScore(WWD) {
   }
   
 function swpScore(SwP) {
-    if(SwP < 10) {
-        return 1;
-    } else if (SwP >= 10 && SwP < 12){
-        return 2;
-    } else if(SwP >= 12 && SwP < 16){
-        return 3;
-    } else if(SwP >= 16){
+    if(SwP >= 16) {
         return 5;
+    } else if (SwP >= 12 ){
+        return 4;
+    } else if(SwP >= 10){
+        return 3;
+    } else if(SwP <10){
+        return 1;
     }
 }
 

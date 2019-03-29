@@ -1,15 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
 import Table from 'react-bootstrap/Table';
-import { wwdScore, waveScore, swpScore } from './functions';
+import { wwdScore, waveScore, swpScore } from './Functions';
+
+
+const containerStyle = {
+  margin: '10%',
+  backgroundColor: '#FDFFFC',
+  border: '1px solid lightgrey'
+};
+
+const conditionStyle = {
+  backgroundColor: '#FDFFFC',
+  border: '1px solid lightgrey'
+};
+
+const tableStyle = {
+  marginLeft: '10%',
+  marginRight: '10%'
+};
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state ={
       surfData: [],
-      SumValue: 0,
-      count: 0,
       totalScore: 0,
     }
   }
@@ -23,34 +38,27 @@ class App extends Component {
 
   }
 
-  onUpdate = (val) => {
-    this.setState({
-      count: val
-    })
-  }
-
-
   render() {
     
     return (
-      <div className="App">
-        <Table striped bordered hover size="sm" >
+      <div className="App" >
+        <div className="container" style={containerStyle} >
+        <h1>Today's Surf Data</h1>
+        <Table striped bordered hover size="sm" style={tableStyle} >
             <thead >
               <tr>
                 <th>Date</th>
                 <th>SwH</th>
-                <th>WVHT</th>
                 <th>SwP</th>
                 <th>WWH</th>
-                <th>WWP</th>
+                <th>WWD</th>
                 <th>SwD</th>
                 <th>WWP</th>
                 <th>WAVE</th>
-                <th>Score WWP</th>
+                <th>Score WWD</th>
                 <th>Score Wave</th>
                 <th>Score SwP</th>
                 <th>Total Score</th>
-                <th>Count</th>
               </tr>
             </thead>
           { this.state.surfData.map(surfDataRow => {
@@ -59,31 +67,31 @@ class App extends Component {
                   <tbody>
                     <tr>
                       <td>{surfDataRow.Year}-{surfDataRow.Month}-{surfDataRow.Day} </td>
-                      <td>{surfDataRow.SwH}</td>
-                      <td>{surfDataRow.WVHT}</td>
+                      <td>{this.state.SwH = surfDataRow.SwH}</td>
                       <td>{surfDataRow.SwP}</td>
                       <td>{surfDataRow.WWH}</td>
                       <td>{surfDataRow.WWP}</td>
                       <td>{surfDataRow.SwD}</td>
                       <td>{surfDataRow.WWP}</td>
                       <td>{(surfDataRow.SwP * surfDataRow.SwH).toFixed(2)}</td>
-                      <td>{ wwdScore(surfDataRow.WWP)}</td>
+                      <td>{ wwdScore(surfDataRow.WWD)}</td>
                       <td>{ waveScore(surfDataRow.SwP, surfDataRow.SwH)}</td>
                       <td>{ swpScore(surfDataRow.SwP)}</td>
                       <td>{ this.state.totalScore = ((swpScore(surfDataRow.SwP)+ wwdScore(surfDataRow.WWP) + waveScore(surfDataRow.SwP, surfDataRow.SwH))/3).toFixed(2) }</td>
-                      <td>{this.state.count = surfDataRow.Count}</td>
                     </tr>
                   </tbody>
                 )
               }
             })
           }
-          <h3>Score of the Day</h3> 
-          <p>
-          { this.state.totalScore }
-          </p>
           </Table>
-
+          <div className="conditions" style={conditionStyle}>
+            <h3>Score of the Day</h3> 
+            <p>
+            { this.state.totalScore}
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
