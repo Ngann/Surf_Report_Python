@@ -35,7 +35,7 @@ class App extends Component {
                 <th>WWP</th>
               </tr>
             </thead>
-          { this.state.surfData.map(function name(surfDataRow){
+          { this.state.surfData.map(function surf (surfDataRow){
               if ((surfDataRow.Year == 2019) & (surfDataRow.Month == 3) & (surfDataRow.Day == 28)) {
                 return (
                   <tbody>
@@ -55,6 +55,7 @@ class App extends Component {
           })
           }
           </Table>
+          <h3>Score of the Day</h3>
       </div>
     );
   }
