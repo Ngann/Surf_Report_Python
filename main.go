@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -55,27 +56,19 @@ func surfDataRequest(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	// log.Printf("Body: %s\n", body)
 	surf := string(body)
-	// surfSpace := space.ReplaceAllString(surf, ",")
-	// rowsSpace := strings.Split(surfSpace, "\n")
-
-	rows := strings.Split(surf, "\n")
-	// fmt.Println(rowsSpace)
-	// var header = strings.Split(rows[0], " ")
+	//to match all leading/trailing whitespac
+	leadSpace := regexp.MustCompile(`^[\s\p{Zs}]+|[\s\p{Zs}]+$`)
+	//to match 2 or more whitespace symbols inside a string
+	extraSpace := regexp.MustCompile(`[\s\p{Zs}]{2,}`)
+	final := leadSpace.ReplaceAllString(surf, "")
+	final = extraSpace.ReplaceAllString(final, " ")
+	rows := strings.Split(final, "\n")
 
 	var allSurfData []SurfData
 
-	// for i := 0; i < len(rows); i++ {
-	// 	space := regexp.MustCompile(`\s+`)
-	// 	removeSpace := space.ReplaceAllString(rows[i], " ")
-	// 	row := strings.Split(removeSpace[i])
-	// 	fmt.Println("column:", row[0])
-
-	// }
-
-	for i := 2; i < len(rows); i++ {
-		var row = strings.Split(rows[i], " ")
+	for i := 2; i < 100; i++ {
+		row := strings.Split(rows[i], " ")
 		if len(row) < 2 {
 			continue
 		}
@@ -116,6 +109,7 @@ func surfDataRequest(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println(allSurfData)
 
+	// create json data
 	js, err := json.Marshal(allSurfData)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
