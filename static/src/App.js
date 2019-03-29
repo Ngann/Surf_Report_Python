@@ -8,8 +8,9 @@ class App extends Component {
     super(props);
     this.state ={
       surfData: [],
-      SumValue: '',
+      SumValue: 0,
       count: 0,
+      totalScore: 0,
     }
   }
 
@@ -30,7 +31,7 @@ class App extends Component {
 
 
   render() {
-
+    
     return (
       <div className="App">
         <Table striped bordered hover size="sm" >
@@ -69,8 +70,8 @@ class App extends Component {
                       <td>{ wwdScore(surfDataRow.WWP)}</td>
                       <td>{ waveScore(surfDataRow.SwP, surfDataRow.SwH)}</td>
                       <td>{ swpScore(surfDataRow.SwP)}</td>
-                      <td>{ ((swpScore(surfDataRow.SwP)+ wwdScore(surfDataRow.WWP) + waveScore(surfDataRow.SwP, surfDataRow.SwH))/3).toFixed(2) }</td>
-                      <td>{surfDataRow.Count}</td>
+                      <td>{ this.state.totalScore = ((swpScore(surfDataRow.SwP)+ wwdScore(surfDataRow.WWP) + waveScore(surfDataRow.SwP, surfDataRow.SwH))/3).toFixed(2) }</td>
+                      <td>{this.state.count = surfDataRow.Count}</td>
                     </tr>
                   </tbody>
                 )
@@ -78,7 +79,9 @@ class App extends Component {
             })
           }
           <h3>Score of the Day</h3> 
-          { this.state.count}
+          <p>
+          { this.state.totalScore }
+          </p>
           </Table>
 
       </div>
