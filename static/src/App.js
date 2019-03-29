@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Table from 'react-bootstrap/Table';
+import { wwdScore, waveScore, swpScore } from './functions';
 
 class App extends Component {
   constructor(props){
@@ -36,9 +37,13 @@ class App extends Component {
                 <th>WWP</th>
                 <th>SwD</th>
                 <th>WWP</th>
+                <th>WAVE</th>
+                <th>Score WWP</th>
+                <th>Score Wave</th>
+                <th>Score SwP</th>
               </tr>
             </thead>
-          { this.state.surfData.map(function surf (surfDataRow){
+          { this.state.surfData.map(surfDataRow => {
               if ((surfDataRow.Year == 2019) & (surfDataRow.Month == 3) & (surfDataRow.Day == 28)) {
                 return (
                   <tbody>
@@ -51,14 +56,18 @@ class App extends Component {
                       <td>{surfDataRow.WWP}</td>
                       <td>{surfDataRow.SwD}</td>
                       <td>{surfDataRow.WWP}</td>
+                      <td>{(surfDataRow.SwP * surfDataRow.SwH).toFixed(2)}</td>
+                      <td>{ wwdScore(surfDataRow.WWP)}</td>
+                      <td>{ waveScore(surfDataRow.SwP, surfDataRow.SwH)}</td>
+                      <td>{ swpScore(surfDataRow.SwP)}</td>
                     </tr>
                   </tbody>
                 )
               }
           })
-          }
+        }
           </Table>
-          <h3>Score of the Day</h3>
+        <h3>Score of the Day</h3> 
       </div>
     );
   }
