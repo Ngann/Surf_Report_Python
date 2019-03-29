@@ -8,9 +8,8 @@ class App extends Component {
     super(props);
     this.state ={
       surfData: [],
-      waveScore: [],
-      swpScore: [],
-      wwdScore: [],
+      SumValue: '',
+      count: 0,
     }
   }
 
@@ -23,7 +22,15 @@ class App extends Component {
 
   }
 
+  onUpdate = (val) => {
+    this.setState({
+      count: val
+    })
+  }
+
+
   render() {
+
     return (
       <div className="App">
         <Table striped bordered hover size="sm" >
@@ -41,10 +48,12 @@ class App extends Component {
                 <th>Score WWP</th>
                 <th>Score Wave</th>
                 <th>Score SwP</th>
+                <th>Total Score</th>
+                <th>Count</th>
               </tr>
             </thead>
           { this.state.surfData.map(surfDataRow => {
-              if ((surfDataRow.Year == 2019) & (surfDataRow.Month == 3) & (surfDataRow.Day == 28)) {
+              if ((surfDataRow.Year == 2019) & (surfDataRow.Month == 3) & (surfDataRow.Day == 29)) {
                 return (
                   <tbody>
                     <tr>
@@ -60,14 +69,18 @@ class App extends Component {
                       <td>{ wwdScore(surfDataRow.WWP)}</td>
                       <td>{ waveScore(surfDataRow.SwP, surfDataRow.SwH)}</td>
                       <td>{ swpScore(surfDataRow.SwP)}</td>
+                      <td>{ ((swpScore(surfDataRow.SwP)+ wwdScore(surfDataRow.WWP) + waveScore(surfDataRow.SwP, surfDataRow.SwH))/3).toFixed(2) }</td>
+                      <td>{surfDataRow.Count}</td>
                     </tr>
                   </tbody>
                 )
               }
-          })
-        }
+            })
+          }
+          <h3>Score of the Day</h3> 
+          { this.state.count}
           </Table>
-        <h3>Score of the Day</h3> 
+
       </div>
     );
   }

@@ -13,30 +13,30 @@ function wwdScore(WWD) {
   }
   
 function swpScore(SwP) {
-if(SwP < 10) {
-    return 1;
-} else if (SwP >= 10 && SwP < 12){
-    return 2;
-} else if(SwP >= 12 && SwP < 16){
-    return 3;
-} else if(SwP >= 16){
-    return 5;
-}
+    if(SwP < 10) {
+        return 1;
+    } else if (SwP >= 10 && SwP < 12){
+        return 2;
+    } else if(SwP >= 12 && SwP < 16){
+        return 3;
+    } else if(SwP >= 16){
+        return 5;
+    }
 }
 
 function waveScore(SwP, SwH) {
-const waveSize = SwP * SwH;
-if(waveSize < 10) {
-    return 1;
-} else if (waveSize > 10 && waveSize <= 19){
-    return 2;
-} else if(waveSize > 19 && waveSize <= 24){
-    return 3;
-} else if(waveSize > 24 && waveSize <= 30){
-    return 4;
-} else if(waveSize > 30){
-    return 5;
-}
+    const waveSize = SwP * SwH;
+    if(waveSize < 10) {
+        return 1;
+    } else if (waveSize > 10 && waveSize <= 19){
+        return 2;
+    } else if(waveSize > 19 && waveSize <= 24){
+        return 3;
+    } else if(waveSize > 24 && waveSize <= 30){
+        return 4;
+    } else if(waveSize > 30){
+        return 5;
+    }
 }
 
 export { wwdScore, waveScore, swpScore }
