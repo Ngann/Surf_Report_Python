@@ -11,21 +11,10 @@ import (
 )
 
 type SurfData struct {
-	Year      int
-	Month     int
-	Day       int
-	Hour      int
-	Min       int
-	WVHT      float64
-	SwH       float64
-	SwP       float64
-	WWH       float64
-	WWP       float64
-	SwD       string
-	WWD       string
-	STEEPNESS string
-	APD       float64
-	MWD       float64
+	Year, Month, Day, Hour, Min int
+	WVHT, SwH, SwP, WWH, WWP    float64
+	SwD, WWD, STEEPNESS         string
+	APD, MWD                    float64
 }
 
 func main() {
@@ -107,7 +96,7 @@ func surfDataRequest(w http.ResponseWriter, r *http.Request) {
 
 		allSurfData = append(allSurfData, surfData)
 	}
-	log.Println(allSurfData)
+	log.Println(allSurfData[0])
 
 	// create json data
 	js, err := json.Marshal(allSurfData)

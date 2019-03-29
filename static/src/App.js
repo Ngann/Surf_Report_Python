@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state ={
       surfData: [],
+      waveScore: [],
+      swpScore: [],
+      wwdScore: [],
     }
   }
 
@@ -17,6 +19,7 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(surfData => this.setState({ surfData }));
+
   }
 
   render() {
